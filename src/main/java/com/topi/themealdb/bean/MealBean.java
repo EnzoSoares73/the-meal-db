@@ -16,6 +16,8 @@ import java.util.List;
 @SessionScoped
 public class MealBean implements Serializable {
 
+    private final int NUM_CHARS = 200;
+
     private MealServico mealServico = new MealServico();
 
     private List<Meal> listaMeals;
@@ -30,6 +32,13 @@ public class MealBean implements Serializable {
         setMeal(mealServico.obterMealPorId(id));
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.redirect(context.getRequestContextPath() + "/webpages/meal.xhtml");
+    }
+
+    public String reduzirTexto(String string) {
+        if (string.length() > NUM_CHARS) {
+            string = string.substring(0, NUM_CHARS) + "...";
+        }
+        return string;
     }
 
     public List<Meal> getListaMeals() {

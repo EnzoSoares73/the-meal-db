@@ -12,6 +12,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class MealServico {
 
     private final String ENDERECO_API = "https://www.themealdb.com/api/json/v1/";
     private final String CHAVE_API = "1";
-    private final String PROCURAR_POR_NOME = "/search.php?s=";
+    private final String PROCURAR_POR_NOME = "/search.php?f=";
     private final String PROCURAR_POR_ID = "/lookup.php?i=";
     private final int NUMERO_INGREDIENTES = 20;
     private final String VAR_INGREDIENTE = "strIngredient";
@@ -51,8 +52,14 @@ public class MealServico {
     }
 
     public List<Meal> retornaTodasMeals() throws IOException {
-        URL url = new URL(ENDERECO_API + CHAVE_API + PROCURAR_POR_NOME);
-        return jsonParaListaMeals(conectar(url));
+        List<Meal> listaMeals = new ArrayList<>();
+        for(char alphabet = 'a'; alphabet <='z'; alphabet++) {
+            URL url = new URL(ENDERECO_API + CHAVE_API + PROCURAR_POR_NOME + alphabet);
+            if (jsonParaListaMeals(conectar(url)) != null) {
+                listaMeals.addAll(Objects.requireNonNull(jsonParaListaMeals(conectar(url))));
+            }
+        }
+        return listaMeals;
     }
 
     public Meal obterMealPorId(int id) throws IOException {
@@ -91,7 +98,7 @@ public class MealServico {
 
             return meals;
 
-        } catch (ParseException | JsonProcessingException e) {
+        } catch (ParseException | JsonProcessingException | NullPointerException e) {
             e.printStackTrace();
         }
         return null;

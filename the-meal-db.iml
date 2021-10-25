@@ -52,5 +52,6 @@
     <orderEntry type="library" name="Maven: org.eclipse.sisu:org.eclipse.sisu.inject:0.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:10.0.0" level="project" />
     <orderEntry type="library" name="primeflex" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
   </component>
 </module>
