@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/primeflex.css"/>
+</h:head>
+
+<h:body>
+    <h:form id="visualizar_meal_form">
+        <img src="#{mealBean.meal.strMealThumb}" alt="#{mealBean.meal.strMeal}"/>
+        <h:outputText value="#{mealBean.meal.strMeal}"/>
+        <h:outputText value="#{mealBean.meal.strCategory}"/>
+        <h:outputText value="#{mealBean.meal.strArea}"/>
+        <h:outputText value="#{mealBean.meal.strInstructions}"/>
+    </h:form>
+</h:body>
+</html>

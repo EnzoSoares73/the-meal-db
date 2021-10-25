@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/primeflex.css"/>
+</h:head>
+
+<h:body>
+    <h:form id="listar_meals_form">
+        <p:dataTable value="#{mealBean.listaMeals}"
+                     var="meal"
+                     id="listar_meals_datatable">
+            <p:column>
+                <img src="#{meal.strMealThumb}" alt="#{meal.strMeal}"/>
+            </p:column>
+            <p:column headerText="Nome"
+                      id="nome">
+                <p:commandButton id="visualizar_meal"
+                                 ajax="false"
+                                 value="#{meal.strMeal}"
+                                 action="#{mealBean.visualizarMeal(meal.idMeal)}"
+                                 update=":visualizar_meal_form"
+                                 process="@this"/>
+            </p:column>
+            <p:column headerText="Categoria"
+                      id="categoria">
+                <h:outputText value="#{meal.strCategory}"/>
+            </p:column>
+            <p:column headerText="Área"
+                      id="area">
+                <h:outputText value="#{meal.strArea}"/>
+            </p:column>
+            <p:column headerText="Instruções"
+                      id="instrucoes">
+                <h:outputText value="#{meal.strInstructions}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
