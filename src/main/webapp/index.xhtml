@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+    <p:dataTable value="#{mealBean.listaMeals}"
+                 var="meal">
+        <p:column headerText="Meals">
+            <h:outputText value="#{meal.strMeal}" />
+        </p:column>
+
+    </p:dataTable>
+</h:body>
+</html>

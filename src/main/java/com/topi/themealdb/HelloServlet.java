@@ -2,7 +2,9 @@ package com.topi.themealdb;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.topi.themealdb.modelos.Meal;
+import com.topi.themealdb.modelo.Meal;
+import com.topi.themealdb.servico.MealServico;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -10,6 +12,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import javax.servlet.http.*;
@@ -54,11 +57,11 @@ public class HelloServlet extends HttpServlet {
                 JSONObject obj = (JSONObject) new JSONParser().parse(String.valueOf(inline));
 
                 ObjectMapper mapper = new ObjectMapper();
-                List<Meal> meals = mapper.readValue(obj.get("meals").toString(), new TypeReference<List<Meal>>(){});
+                JSONArray jsonArray = (JSONArray) obj.get("meals");
 
                 PrintWriter out = response.getWriter();
                 out.println("<html><body>");
-                out.println("<h1>" + meals.size() + "</h1>");
+                out.println("<h1>" + jsonArray.get(0) + "</h1>");
                 out.println("</body></html>");
             } catch (ParseException e) {
                 e.printStackTrace();

@@ -1,7 +1,12 @@
-package com.topi.themealdb.modelos;
+package com.topi.themealdb.modelo;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 
+import java.util.HashMap;
+import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Meal {
     private int idMeal;
@@ -11,6 +16,9 @@ public class Meal {
     private String strArea;
     private String strInstructions;
     private String strMealThumb;
+    private String strYoutube;
+    private String[] tags;
+    private Map<String, String> ingredients_amount = new HashMap<>();
 
     public int getIdMeal() {
         return idMeal;
@@ -66,5 +74,29 @@ public class Meal {
 
     public void setStrMealThumb(String strMealThumb) {
         this.strMealThumb = strMealThumb;
+    }
+
+    public String getStrYoutube() {
+        return strYoutube;
+    }
+
+    public void setStrYoutube(String strYoutube) {
+        this.strYoutube = strYoutube;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
+    public Map<String, String> getIngredients_amount() {
+        return ingredients_amount;
+    }
+
+    public void setIngredients_amount(Map<String, String> ingredients_amount) {
+        this.ingredients_amount = ingredients_amount;
     }
 }
